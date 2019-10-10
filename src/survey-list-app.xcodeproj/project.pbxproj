@@ -13,6 +13,8 @@
 		54C14F6C234ED34D0051B7A8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 54C14F6B234ED34D0051B7A8 /* Assets.xcassets */; };
 		54C14F6F234ED34D0051B7A8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 54C14F6D234ED34D0051B7A8 /* LaunchScreen.storyboard */; };
 		54C14F7A234ED34D0051B7A8 /* survey_list_appTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C14F79234ED34D0051B7A8 /* survey_list_appTests.swift */; };
+		81288A96D1D2D3938B6DE257 /* Pods_survey_list_appTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05D627B9D570DA0B52435239 /* Pods_survey_list_appTests.framework */; };
+		F4D363869BF329BE4703DADF /* Pods_survey_list_app.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CD6F5CD9099F312B2A617BD /* Pods_survey_list_app.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,6 +29,8 @@
 
 /* Begin PBXFileReference section */
 		0141F232D73066D65322D2B0 /* Pods-survey-list-app.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-survey-list-app.release.xcconfig"; path = "Target Support Files/Pods-survey-list-app/Pods-survey-list-app.release.xcconfig"; sourceTree = "<group>"; };
+		05D627B9D570DA0B52435239 /* Pods_survey_list_appTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_survey_list_appTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2CD6F5CD9099F312B2A617BD /* Pods_survey_list_app.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_survey_list_app.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		54C14F61234ED34D0051B7A8 /* survey-list-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "survey-list-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		54C14F64234ED34D0051B7A8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		54C14F66234ED34D0051B7A8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -47,6 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F4D363869BF329BE4703DADF /* Pods_survey_list_app.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -54,6 +59,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81288A96D1D2D3938B6DE257 /* Pods_survey_list_appTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -105,6 +111,8 @@
 		71544370D4E7F425F2931BE0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2CD6F5CD9099F312B2A617BD /* Pods_survey_list_app.framework */,
+				05D627B9D570DA0B52435239 /* Pods_survey_list_appTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -131,6 +139,7 @@
 				54C14F5D234ED34D0051B7A8 /* Sources */,
 				54C14F5E234ED34D0051B7A8 /* Frameworks */,
 				54C14F5F234ED34D0051B7A8 /* Resources */,
+				69492510355E0CA4B0A78ACB /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -255,6 +264,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		69492510355E0CA4B0A78ACB /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-survey-list-app/Pods-survey-list-app-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-survey-list-app/Pods-survey-list-app-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
