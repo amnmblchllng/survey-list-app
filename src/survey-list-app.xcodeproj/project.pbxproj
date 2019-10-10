@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		54728AA5234F447E00E81BA1 /* Survey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54728AA4234F447E00E81BA1 /* Survey.swift */; };
 		54C14F65234ED34D0051B7A8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C14F64234ED34D0051B7A8 /* AppDelegate.swift */; };
 		54C14F67234ED34D0051B7A8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C14F66234ED34D0051B7A8 /* ViewController.swift */; };
 		54C14F6A234ED34D0051B7A8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 54C14F68234ED34D0051B7A8 /* Main.storyboard */; };
@@ -33,6 +34,7 @@
 		05D627B9D570DA0B52435239 /* Pods_survey_list_appTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_survey_list_appTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CD6F5CD9099F312B2A617BD /* Pods_survey_list_app.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_survey_list_app.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		541441C9234F04E800674A99 /* survey-list.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "survey-list.xcconfig"; sourceTree = "<group>"; };
+		54728AA4234F447E00E81BA1 /* Survey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Survey.swift; sourceTree = "<group>"; };
 		54C14F61234ED34D0051B7A8 /* survey-list-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "survey-list-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		54C14F64234ED34D0051B7A8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		54C14F66234ED34D0051B7A8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -108,6 +110,7 @@
 				54C14F6D234ED34D0051B7A8 /* LaunchScreen.storyboard */,
 				54C14F70234ED34D0051B7A8 /* Info.plist */,
 				54E6B802234EDFB100519723 /* API.swift */,
+				54728AA4234F447E00E81BA1 /* Survey.swift */,
 			);
 			path = "survey-list-app";
 			sourceTree = "<group>";
@@ -287,10 +290,12 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-survey-list-app/Pods-survey-list-app-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -307,6 +312,7 @@
 				54C14F67234ED34D0051B7A8 /* ViewController.swift in Sources */,
 				54E6B803234EDFB100519723 /* API.swift in Sources */,
 				54C14F65234ED34D0051B7A8 /* AppDelegate.swift in Sources */,
+				54728AA5234F447E00E81BA1 /* Survey.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

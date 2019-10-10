@@ -19,19 +19,6 @@ class API {
     // bearer token for auth
     private var bearer: Bearer?
     
-    struct Survey {
-        var id: String
-        var title: String
-        var description: String
-        var coverImageUrl: String
-        var coverImageUrlLarge: String {
-            get {
-                return "\(coverImageUrl)l"
-            }
-        }
-        // ... more fields if needed
-    }
-    
     func getSurveys(page: Int? = nil, perPage: Int? = nil, completion: ((Error?, [Survey]?) -> ())? = nil) {
         authIfNeeded() { error, bearer in
             if error != nil {
@@ -54,15 +41,14 @@ class API {
                     completion?(NSError(domain: "api.surveys", code: errors.network.rawValue, userInfo: ["original": error]), nil)
                     return
                 }
-                guard
-                    let status = response.response?.statusCode, status == 200,
-                    let result = response.result.value,
-                    let list = result as? NSArray
-                    else {
-                        // treat response format problems as backend error
-                        completion?(NSError(domain: "api.surveys", code: errors.backend.rawValue), nil)
-                        return
-                    }
+                guard let status = response.response?.statusCode, status == 200 else {
+                    // treat response format problems as backend error
+                    completion?(NSError(domain: "api.surveys", code: errors.backend.rawValue), nil)
+                    return
+                }
+                
+                // api responds sometimes with [] and sometimes with nil when page is empty
+                let list = (response.result.value as? NSArray) ?? []
                 
                 // response is a list; parse the objects
                 var surveys: [Survey] = []

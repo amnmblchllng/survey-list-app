@@ -19,13 +19,22 @@ class APITests: XCTestCase {
     }
     
     func testGetSurveys() {
+        self.wait(for: [
+            _testGetSurveys(),
+            _testGetSurveys(page: 3, perPage: 10),
+            _testGetSurveys(page: 4, perPage: 10),
+            _testGetSurveys(page: 100, perPage: 100),
+        ], timeout: 10.0)
+    }
+    
+    func _testGetSurveys(page: Int? = nil, perPage: Int? = nil) -> XCTestExpectation {
         let ok = self.expectation(description: "got surveys")
-        api.getSurveys() { error, surveys in
+        api.getSurveys(page: page, perPage: perPage) { error, surveys in
             XCTAssertNil(error, "error not nil")
             XCTAssertNotNil(surveys, "surveys are nil")
             ok.fulfill()
         }
-        self.wait(for: [ok], timeout: 5.0)
+        return ok
     }
     
     func testTokenExpiresSoon() {
