@@ -16,12 +16,83 @@ class API {
     private let authUser = Bundle.main.object(forInfoDictionaryKey:"API_AUTH_USER") as! String
     private let authPass = Bundle.main.object(forInfoDictionaryKey:"API_AUTH_PASS") as! String
     
+    // bearer token for auth
     private var bearer: Bearer?
+    
+    struct Survey {
+        var id: String
+        var title: String
+        var description: String
+        var coverImageUrl: String
+        var coverImageUrlLarge: String {
+            get {
+                return "\(coverImageUrl)l"
+            }
+        }
+        // ... more fields if needed
+    }
+    
+    func getSurveys(page: Int? = nil, perPage: Int? = nil, completion: ((Error?, [Survey]?) -> ())? = nil) {
+        authIfNeeded() { error, bearer in
+            if error != nil {
+                completion?(error, nil)
+                return
+            }
+            
+            var params = [ "access_token": bearer!.accessToken ]
+            if page != nil {
+                params["page"] = String(page!)
+            }
+            if perPage != nil {
+                params["per_page"] = String(perPage!)
+            }
+            
+            Alamofire.request("\(self.baseUrl)surveys.json", method: .get, parameters: params)
+            .responseJSON { response in
+                if let error = response.result.error {
+                    // treat alamofire error as network error
+                    completion?(NSError(domain: "api.surveys", code: errors.network.rawValue, userInfo: ["original": error]), nil)
+                    return
+                }
+                guard
+                    let status = response.response?.statusCode, status == 200,
+                    let result = response.result.value,
+                    let list = result as? NSArray
+                    else {
+                        // treat response format problems as backend error
+                        completion?(NSError(domain: "api.surveys", code: errors.backend.rawValue), nil)
+                        return
+                    }
+                
+                // response is a list; parse the objects
+                var surveys: [Survey] = []
+                surveys.reserveCapacity(list.count)
+                for elem in list {
+                    guard
+                        let s = elem as? NSDictionary,
+                        let id = s["id"] as? String,
+                        let title = s["title"] as? String,
+                        let description = s["description"] as? String,
+                        let coverImageUrl = s["cover_image_url"] as? String
+                    else {
+                        // treat response format problems as backend error
+                        completion?(NSError(domain: "api.surveys", code: errors.backend.rawValue), nil)
+                        return
+                    }
+                    surveys.append(Survey(id: id, title: title, description: description, coverImageUrl: coverImageUrl))
+                }
+                
+                completion?(nil, surveys)
+            }
+        }
+    }
+    
     
     enum errors: Int {
         case network = 1, backend
     }
     
+    // Bearer has access token and expiration date
     struct Bearer {
         var accessToken: String
         var expirationDate: Date
@@ -66,6 +137,7 @@ class API {
                 completion?(NSError(domain: "api.auth", code: errors.network.rawValue, userInfo: ["original": error]), nil)
                 return
             }
+            
             guard
                 let status = response.response?.statusCode, status == 200,
                 let result = response.result.value,
@@ -79,9 +151,9 @@ class API {
                 completion?(NSError(domain: "auth", code: errors.backend.rawValue), nil)
                 return
             }
-            
             let expirationDate = Date(timeIntervalSince1970: TimeInterval(createdAt + expiresIn))
             let bearer = Bearer(accessToken: accessToken, expirationDate: expirationDate)
+            
             completion?(nil, bearer)
         }
     }

@@ -18,6 +18,16 @@ class APITests: XCTestCase {
         continueAfterFailure = false
     }
     
+    func testGetSurveys() {
+        let ok = self.expectation(description: "got surveys")
+        api.getSurveys() { error, surveys in
+            XCTAssertNil(error, "error not nil")
+            XCTAssertNotNil(surveys, "surveys are nil")
+            ok.fulfill()
+        }
+        self.wait(for: [ok], timeout: 5.0)
+    }
+    
     func testTokenExpiresSoon() {
         var bearer = API.Bearer(accessToken: "", expirationDate: Date())
         
