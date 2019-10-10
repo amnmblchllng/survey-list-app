@@ -21,7 +21,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "Surveys"
+        title = "SURVEYS"
         
         // styling
         view.backgroundColor = UIColor(red:18*1.5/255.0, green:27*1.5/255.0, blue:50*1.5/255.0, alpha:1)
