@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  SurveyListViewController.swift
 //  survey-list-app
 //
 //  Created by amnmblchllng on 10.10.19.
@@ -9,7 +9,8 @@
 import UIKit
 import SDWebImage
 
-class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+// SurveyListViewController is the default view controller; it lists the surveys
+class SurveyListViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!

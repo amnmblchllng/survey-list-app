@@ -19,6 +19,7 @@ class API {
     // bearer token for auth
     private var bearer: Bearer?
     
+    // getSurveys retrieves surveys from the API and handles authentication if needed; results can be paged optionally
     func getSurveys(page: Int? = nil, perPage: Int? = nil, completion: ((Error?, [Survey]?) -> ())? = nil) {
         authIfNeeded() { error, bearer in
             if error != nil {
@@ -73,7 +74,7 @@ class API {
         }
     }
     
-    
+    // response error codes
     enum errors: Int {
         case network = 1, backend
     }

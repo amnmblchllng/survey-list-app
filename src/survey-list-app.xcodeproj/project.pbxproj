@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		54728AA5234F447E00E81BA1 /* Survey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54728AA4234F447E00E81BA1 /* Survey.swift */; };
 		54C14F65234ED34D0051B7A8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C14F64234ED34D0051B7A8 /* AppDelegate.swift */; };
-		54C14F67234ED34D0051B7A8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C14F66234ED34D0051B7A8 /* ViewController.swift */; };
+		54C14F67234ED34D0051B7A8 /* SurveyListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54C14F66234ED34D0051B7A8 /* SurveyListViewController.swift */; };
 		54C14F6A234ED34D0051B7A8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 54C14F68234ED34D0051B7A8 /* Main.storyboard */; };
 		54C14F6C234ED34D0051B7A8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 54C14F6B234ED34D0051B7A8 /* Assets.xcassets */; };
 		54C14F6F234ED34D0051B7A8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 54C14F6D234ED34D0051B7A8 /* LaunchScreen.storyboard */; };
@@ -37,7 +37,7 @@
 		54728AA4234F447E00E81BA1 /* Survey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Survey.swift; sourceTree = "<group>"; };
 		54C14F61234ED34D0051B7A8 /* survey-list-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "survey-list-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		54C14F64234ED34D0051B7A8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		54C14F66234ED34D0051B7A8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		54C14F66234ED34D0051B7A8 /* SurveyListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyListViewController.swift; sourceTree = "<group>"; };
 		54C14F69234ED34D0051B7A8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		54C14F6B234ED34D0051B7A8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		54C14F6E234ED34D0051B7A8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -104,7 +104,7 @@
 			isa = PBXGroup;
 			children = (
 				54C14F64234ED34D0051B7A8 /* AppDelegate.swift */,
-				54C14F66234ED34D0051B7A8 /* ViewController.swift */,
+				54C14F66234ED34D0051B7A8 /* SurveyListViewController.swift */,
 				54C14F68234ED34D0051B7A8 /* Main.storyboard */,
 				54C14F6B234ED34D0051B7A8 /* Assets.xcassets */,
 				54C14F6D234ED34D0051B7A8 /* LaunchScreen.storyboard */,
@@ -309,7 +309,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				54C14F67234ED34D0051B7A8 /* ViewController.swift in Sources */,
+				54C14F67234ED34D0051B7A8 /* SurveyListViewController.swift in Sources */,
 				54E6B803234EDFB100519723 /* API.swift in Sources */,
 				54C14F65234ED34D0051B7A8 /* AppDelegate.swift in Sources */,
 				54728AA5234F447E00E81BA1 /* Survey.swift in Sources */,
