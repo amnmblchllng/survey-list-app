@@ -143,9 +143,24 @@ class CollectionViewCell: UICollectionViewCell {
     
     var tappedTakeSurveyAction: ((Survey)->())?
     var survey: Survey!
+    let gradient = CAGradientLayer()
     
     @IBAction func tappedTakeSurvey(_ sender: Any) {
         tappedTakeSurveyAction?(survey)
+    }
+    
+    // add gradient overlay
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        gradient.colors = [UIColor.black.cgColor, UIColor.clear.cgColor]
+        gradient.opacity = 0.4
+        imageView.layer.addSublayer(gradient)
+    }
+    
+    // layout gradient
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        gradient.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height * 0.5)
     }
     
     func populate(survey: Survey, action: @escaping (Survey)->()) {
