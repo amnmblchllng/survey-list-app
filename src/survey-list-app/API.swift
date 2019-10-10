@@ -19,19 +19,6 @@ class API {
     // bearer token for auth
     private var bearer: Bearer?
     
-    struct Survey {
-        var id: String
-        var title: String
-        var description: String
-        var coverImageUrl: String
-        var coverImageUrlLarge: String {
-            get {
-                return "\(coverImageUrl)l"
-            }
-        }
-        // ... more fields if needed
-    }
-    
     func getSurveys(page: Int? = nil, perPage: Int? = nil, completion: ((Error?, [Survey]?) -> ())? = nil) {
         authIfNeeded() { error, bearer in
             if error != nil {
