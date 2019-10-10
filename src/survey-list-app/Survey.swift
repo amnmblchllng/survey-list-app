@@ -8,6 +8,7 @@
 
 import Foundation
 
+// Survey model from API that is used in the UI
 struct Survey {
     var id: String
     var title: String
