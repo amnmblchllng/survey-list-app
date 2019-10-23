@@ -40,12 +40,12 @@ class API {
             .responseJSON { response in
                 if let error = response.result.error {
                     // treat alamofire error as network error
-                    completion?(NSError(domain: "api.surveys", code: errors.network.rawValue, userInfo: ["original": error]), nil)
+                    completion?(NSError(domain: "api.surveys", code: Errors.network.rawValue, userInfo: ["original": error]), nil)
                     return
                 }
                 guard let status = response.response?.statusCode, status == 200 else {
                     // treat response format problems as backend error
-                    completion?(NSError(domain: "api.surveys", code: errors.backend.rawValue), nil)
+                    completion?(NSError(domain: "api.surveys", code: Errors.backend.rawValue), nil)
                     return
                 }
                 
@@ -64,7 +64,7 @@ class API {
                         let coverImageUrl = s["cover_image_url"] as? String
                     else {
                         // treat response format problems as backend error
-                        completion?(NSError(domain: "api.surveys", code: errors.backend.rawValue), nil)
+                        completion?(NSError(domain: "api.surveys", code: Errors.backend.rawValue), nil)
                         return
                     }
                     surveys.append(Survey(id: id, title: title, description: description, coverImageUrl: coverImageUrl))
@@ -76,7 +76,7 @@ class API {
     }
     
     // response error codes
-    enum errors: Int {
+    enum Errors: Int {
         case network = 1, backend
     }
     
@@ -122,7 +122,7 @@ class API {
         .responseJSON { response in
             if let error = response.result.error {
                 // treat alamofire error as network error
-                completion?(NSError(domain: "api.auth", code: errors.network.rawValue, userInfo: ["original": error]), nil)
+                completion?(NSError(domain: "api.auth", code: Errors.network.rawValue, userInfo: ["original": error]), nil)
                 return
             }
             
@@ -136,7 +136,7 @@ class API {
                 let createdAt = json["created_at"] as? Int
             else {
                 // treat response format problems as backend error
-                completion?(NSError(domain: "auth", code: errors.backend.rawValue), nil)
+                completion?(NSError(domain: "auth", code: Errors.backend.rawValue), nil)
                 return
             }
             let expirationDate = Date(timeIntervalSince1970: TimeInterval(createdAt + expiresIn))
