@@ -37,7 +37,7 @@ class API {
             }
             
             self.afSessionManager.request("\(self.baseUrl)surveys.json", method: .get, parameters: params)
-            .responseJSON { response in
+            .responseData { response in
                 if let error = response.result.error {
                     // treat alamofire error as network error
                     completion?(APIError.network(error), nil)
@@ -49,41 +49,20 @@ class API {
                     return
                 }
                 
-                // api responds sometimes with [] and sometimes with nil when page is empty
-                let list = (response.result.value as? NSArray) ?? []
-                
-                // response is a list; parse the objects
-                var surveys: [Survey] = []
-                surveys.reserveCapacity(list.count)
-                for elem in list {
-                    guard
-                        let s = elem as? NSDictionary,
-                        let id = s["id"] as? String,
-                        let title = s["title"] as? String,
-                        let description = s["description"] as? String,
-                        let coverImageUrl = s["cover_image_url"] as? String
-                    else {
-                        // treat response format problems as backend error
-                        completion?(APIError.backend, nil)
-                        return
+                do {
+                    guard let result = response.result.value else {
+                        throw APIError.backend
                     }
-                    surveys.append(Survey(id: id, title: title, description: description, coverImageUrl: coverImageUrl))
+                    // api responds sometimes with null and sometimes with [] when page is empty.
+                    // so we check for null here. optional JSONDecoder [Survey]?.self doesn't suffice
+                    if "null" == String(data: result, encoding: .utf8) {
+                        completion?(nil, [])
+                    } else {
+                        completion?(nil, try JSONDecoder().decode([Survey].self, from: result))
+                    }
+                } catch {
+                    completion?(error, nil)
                 }
-                
-                completion?(nil, surveys)
-            }
-        }
-    }
-    
-    // Bearer has access token and expiration date
-    struct Bearer {
-        var accessToken: String
-        var expirationDate: Date
-        var expiredOrExpiresSoon: Bool {
-            get {
-                let soonSeconds = TimeInterval(60)
-                let soonDate = Date().addingTimeInterval(soonSeconds)
-                return soonDate > expirationDate
             }
         }
     }
@@ -114,7 +93,7 @@ class API {
             "password": authPass,
         ]
         self.afSessionManager.request("\(baseUrl)oauth/token", method: .post, parameters: params)
-        .responseJSON { response in
+        .responseData { response in
             if let error = response.result.error {
                 completion?(APIError.network(error), nil)
                 return
@@ -123,18 +102,12 @@ class API {
             guard
                 let status = response.response?.statusCode, status == 200,
                 let result = response.result.value,
-                let json = result as? NSDictionary,
-                let tokenType = json["token_type"] as? String, tokenType == "bearer",
-                let accessToken = json["access_token"] as? String,
-                let expiresIn = json["expires_in"] as? Int,
-                let createdAt = json["created_at"] as? Int
+                let bearer = try? JSONDecoder().decode(Bearer.self, from: result)
             else {
                 // treat response format problems as backend error
                 completion?(APIError.backend, nil)
                 return
             }
-            let expirationDate = Date(timeIntervalSince1970: TimeInterval(createdAt + expiresIn))
-            let bearer = Bearer(accessToken: accessToken, expirationDate: expirationDate)
             
             completion?(nil, bearer)
         }
