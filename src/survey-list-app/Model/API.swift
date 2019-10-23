@@ -18,6 +18,7 @@ class API {
     
     // bearer token for auth
     private var bearer: Bearer?
+    private let afSessionManager = Alamofire.SessionManager(configuration: URLSessionConfiguration.default)
     
     // getSurveys retrieves surveys from the API and handles authentication if needed; results can be paged optionally
     func getSurveys(page: Int? = nil, perPage: Int? = nil, completion: ((Error?, [Survey]?) -> ())? = nil) {
@@ -35,7 +36,7 @@ class API {
                 params["per_page"] = String(perPage)
             }
             
-            Alamofire.request("\(self.baseUrl)surveys.json", method: .get, parameters: params)
+            self.afSessionManager.request("\(self.baseUrl)surveys.json", method: .get, parameters: params)
             .responseJSON { response in
                 if let error = response.result.error {
                     // treat alamofire error as network error
@@ -117,7 +118,7 @@ class API {
             "username": authUser,
             "password": authPass,
         ]
-        Alamofire.request("\(baseUrl)oauth/token", method: .post, parameters: params)
+        self.afSessionManager.request("\(baseUrl)oauth/token", method: .post, parameters: params)
         .responseJSON { response in
             if let error = response.result.error {
                 // treat alamofire error as network error
