@@ -40,12 +40,12 @@ class API {
             .responseJSON { response in
                 if let error = response.result.error {
                     // treat alamofire error as network error
-                    completion?(NSError(domain: "api.surveys", code: Errors.network.rawValue, userInfo: ["original": error]), nil)
+                    completion?(APIError.network(error), nil)
                     return
                 }
                 guard let status = response.response?.statusCode, status == 200 else {
                     // treat response format problems as backend error
-                    completion?(NSError(domain: "api.surveys", code: Errors.backend.rawValue), nil)
+                    completion?(APIError.backend, nil)
                     return
                 }
                 
@@ -64,7 +64,7 @@ class API {
                         let coverImageUrl = s["cover_image_url"] as? String
                     else {
                         // treat response format problems as backend error
-                        completion?(NSError(domain: "api.surveys", code: Errors.backend.rawValue), nil)
+                        completion?(APIError.backend, nil)
                         return
                     }
                     surveys.append(Survey(id: id, title: title, description: description, coverImageUrl: coverImageUrl))
@@ -73,11 +73,6 @@ class API {
                 completion?(nil, surveys)
             }
         }
-    }
-    
-    // response error codes
-    enum Errors: Int {
-        case network = 1, backend
     }
     
     // Bearer has access token and expiration date
@@ -121,8 +116,7 @@ class API {
         self.afSessionManager.request("\(baseUrl)oauth/token", method: .post, parameters: params)
         .responseJSON { response in
             if let error = response.result.error {
-                // treat alamofire error as network error
-                completion?(NSError(domain: "api.auth", code: Errors.network.rawValue, userInfo: ["original": error]), nil)
+                completion?(APIError.network(error), nil)
                 return
             }
             
@@ -136,7 +130,7 @@ class API {
                 let createdAt = json["created_at"] as? Int
             else {
                 // treat response format problems as backend error
-                completion?(NSError(domain: "auth", code: Errors.backend.rawValue), nil)
+                completion?(APIError.backend, nil)
                 return
             }
             let expirationDate = Date(timeIntervalSince1970: TimeInterval(createdAt + expiresIn))
