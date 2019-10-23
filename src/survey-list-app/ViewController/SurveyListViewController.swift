@@ -16,8 +16,9 @@ class SurveyListViewController: UIViewController, UICollectionViewDelegate, UICo
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var pageControl: UIPageControl!
     
-    let api = API()
-    var surveys: [Survey] = []
+    private let api = APISurveyProvider(api: API())
+    private var surveys: [Survey] = []
+    private var refreshing = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +26,7 @@ class SurveyListViewController: UIViewController, UICollectionViewDelegate, UICo
         title = "SURVEYS"
         
         // styling
-        view.backgroundColor = UIColor(red:18*1.5/255.0, green:27*1.5/255.0, blue:50*1.5/255.0, alpha:1)
+        view.backgroundColor = UIColor(hexRgba: 0x1B284BFF)
         pageControl.transform = pageControl.transform.rotated(by: .pi/2)
         collectionView.backgroundColor = view.backgroundColor
         
@@ -43,15 +44,14 @@ class SurveyListViewController: UIViewController, UICollectionViewDelegate, UICo
     // layout page control because auto layout doesn't seem to handle rotation well
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        pageControl.frame = CGRect(x: self.view.bounds.width - 20, y: 0, width: 20, height: self.view.bounds.height)
+        pageControl.frame = CGRect(x: view.bounds.width - 20, y: 0, width: 20, height: view.bounds.height)
     }
     
-    @objc func refresh() {
+    @objc private func refresh() {
         refreshFromAPI()
     }
     
-    var refreshing = false
-    func refreshFromAPI(page: Int? = nil) {
+    private func refreshFromAPI(page: Int? = nil) {
         if page == nil {
             // first iteration
             if refreshing {
@@ -83,10 +83,10 @@ class SurveyListViewController: UIViewController, UICollectionViewDelegate, UICo
     }
     
     // show error message in alert box
-    func showError(_ message: String) {
+    private func showError(_ message: String) {
         let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        self.present(alert, animated: true)
+        present(alert, animated: true)
     }
     
     // set current page of page control
@@ -111,7 +111,9 @@ class SurveyListViewController: UIViewController, UICollectionViewDelegate, UICo
         let row = indexPath.row
         let survey = surveys[row]
         cell.populate(survey: survey, action: { [weak self] survey in
-            self?.performSegue(withIdentifier: "tappedTakeSurveySegue", sender: self!)
+            if let s = self {
+                s.performSegue(withIdentifier: "tappedTakeSurveySegue", sender: s)
+            }
         })
         return cell
     }
