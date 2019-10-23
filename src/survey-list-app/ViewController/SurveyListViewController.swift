@@ -43,7 +43,7 @@ class SurveyListViewController: UIViewController, UICollectionViewDelegate, UICo
     // layout page control because auto layout doesn't seem to handle rotation well
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        pageControl.frame = CGRect(x: self.view.bounds.width - 20, y: 0, width: 20, height: self.view.bounds.height)
+        pageControl.frame = CGRect(x: view.bounds.width - 20, y: 0, width: 20, height: view.bounds.height)
     }
     
     @objc func refresh() {
@@ -86,7 +86,7 @@ class SurveyListViewController: UIViewController, UICollectionViewDelegate, UICo
     func showError(_ message: String) {
         let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        self.present(alert, animated: true)
+        present(alert, animated: true)
     }
     
     // set current page of page control

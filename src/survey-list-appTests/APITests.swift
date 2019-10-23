@@ -19,7 +19,7 @@ class APITests: XCTestCase {
     }
     
     func testGetSurveys() {
-        self.wait(for: [
+        wait(for: [
             _testGetSurveys(),
             _testGetSurveys(page: 3, perPage: 10),
             _testGetSurveys(page: 4, perPage: 10),
@@ -28,7 +28,7 @@ class APITests: XCTestCase {
     }
     
     func _testGetSurveys(page: Int? = nil, perPage: Int? = nil) -> XCTestExpectation {
-        let ok = self.expectation(description: "got surveys")
+        let ok = expectation(description: "got surveys")
         api.getSurveys(page: page, perPage: perPage) { error, surveys in
             XCTAssertNil(error, "error not nil")
             XCTAssertNotNil(surveys, "surveys are nil")
@@ -54,7 +54,7 @@ class APITests: XCTestCase {
     }
     
     func testAuthIfNeeded() {
-        let ok = self.expectation(description: "auth ok")
+        let ok = expectation(description: "auth ok")
         api.authIfNeeded() { error, bearer1 in
             XCTAssertNil(error, "error not nil")
             self.api.authIfNeeded() { error, bearer2 in
@@ -63,18 +63,18 @@ class APITests: XCTestCase {
                 ok.fulfill()
             }
         }
-        self.wait(for: [ok], timeout: 5.0)
+        wait(for: [ok], timeout: 5.0)
     }
     
     func testAuth() {
-        let authOk = self.expectation(description: "auth ok")
+        let authOk = expectation(description: "auth ok")
         api.getNewBearer() { (error, bearer) in
             XCTAssertNil(error, "error not nil")
             XCTAssertNotNil(bearer, "bearer is nil")
             XCTAssert(bearer!.expirationDate > Date(), "expiration date must be > date")
             authOk.fulfill()
         }
-        self.wait(for: [authOk], timeout: 5.0)
+        wait(for: [authOk], timeout: 5.0)
     }
     
 }

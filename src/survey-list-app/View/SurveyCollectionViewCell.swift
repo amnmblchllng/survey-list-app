@@ -37,19 +37,19 @@ class SurveyCollectionViewCell: UICollectionViewCell {
     // layout gradient
     override func layoutSubviews() {
         super.layoutSubviews()
-        gradient.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height * 0.5)
+        gradient.frame = CGRect(x: 0, y: 0, width: frame.width, height: frame.height * 0.5)
     }
     
     func populate(survey: Survey, action: @escaping (Survey)->()) {
         if let imageURL = URL(string: survey.coverImageUrlLarge) {
             // some surveys' images point to unavailable cloudfront bucket so it displays nothing
-            self.imageView.sd_setImage(with: imageURL)
+            imageView.sd_setImage(with: imageURL)
         } else {
-            self.imageView.sd_setImage(with: nil)
+            imageView.sd_setImage(with: nil)
         }
-        self.titleLabel.text = survey.title
-        self.descriptionLabel.text = survey.description
+        titleLabel.text = survey.title
+        descriptionLabel.text = survey.description
         self.survey = survey
-        self.tappedTakeSurveyAction = action
+        tappedTakeSurveyAction = action
     }
 }

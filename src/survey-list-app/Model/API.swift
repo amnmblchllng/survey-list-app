@@ -87,7 +87,7 @@ class API {
             get {
                 let soonSeconds = TimeInterval(60)
                 let soonDate = Date().addingTimeInterval(soonSeconds)
-                return soonDate > self.expirationDate
+                return soonDate > expirationDate
             }
         }
     }
@@ -105,7 +105,7 @@ class API {
                 completion?(nil, bearer)
             }
         } else {
-            completion?(nil, self.bearer)
+            completion?(nil, bearer)
         }
     }
     
