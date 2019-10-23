@@ -111,7 +111,9 @@ class SurveyListViewController: UIViewController, UICollectionViewDelegate, UICo
         let row = indexPath.row
         let survey = surveys[row]
         cell.populate(survey: survey, action: { [weak self] survey in
-            self?.performSegue(withIdentifier: "tappedTakeSurveySegue", sender: self!)
+            if let s = self {
+                s.performSegue(withIdentifier: "tappedTakeSurveySegue", sender: s)
+            }
         })
         return cell
     }

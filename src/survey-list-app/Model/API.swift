@@ -22,17 +22,17 @@ class API {
     // getSurveys retrieves surveys from the API and handles authentication if needed; results can be paged optionally
     func getSurveys(page: Int? = nil, perPage: Int? = nil, completion: ((Error?, [Survey]?) -> ())? = nil) {
         authIfNeeded() { error, bearer in
-            if error != nil {
+            guard let bearer = bearer, error == nil else {
                 completion?(error, nil)
                 return
             }
             
-            var params = [ "access_token": bearer!.accessToken ]
-            if page != nil {
-                params["page"] = String(page!)
+            var params = [ "access_token": bearer.accessToken ]
+            if let page = page {
+                params["page"] = String(page)
             }
-            if perPage != nil {
-                params["per_page"] = String(perPage!)
+            if let perPage = page {
+                params["per_page"] = String(perPage)
             }
             
             Alamofire.request("\(self.baseUrl)surveys.json", method: .get, parameters: params)
@@ -94,7 +94,7 @@ class API {
     
     // authIfNeeded authorizes API if no token is available or if it expires soon.
     func authIfNeeded(completion: ((Error?, Bearer?) -> ())? = nil) {
-        if bearer == nil || bearer!.expiredOrExpiresSoon {
+        if bearer == nil || bearer?.expiredOrExpiresSoon == true {
             // we could add a semaphore in the future if we want to invalidate only once
             getNewBearer() { (error, bearer) in
                 if error != nil {

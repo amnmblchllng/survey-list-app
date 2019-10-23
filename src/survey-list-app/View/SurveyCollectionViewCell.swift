@@ -16,10 +16,13 @@ class SurveyCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var imageView: UIImageView!
     
     var tappedTakeSurveyAction: ((Survey)->())?
-    var survey: Survey!
+    var survey: Survey?
     let gradient = CAGradientLayer()
     
     @IBAction func tappedTakeSurvey(_ sender: Any) {
+        guard let survey = survey else {
+            return
+        }
         tappedTakeSurveyAction?(survey)
     }
     
@@ -38,9 +41,12 @@ class SurveyCollectionViewCell: UICollectionViewCell {
     }
     
     func populate(survey: Survey, action: @escaping (Survey)->()) {
-        // some surveys' images point to unavailable cloudfront bucket so it displays nothing
-        let imageURL = URL(string: survey.coverImageUrlLarge)!
-        self.imageView.sd_setImage(with: imageURL)
+        if let imageURL = URL(string: survey.coverImageUrlLarge) {
+            // some surveys' images point to unavailable cloudfront bucket so it displays nothing
+            self.imageView.sd_setImage(with: imageURL)
+        } else {
+            self.imageView.sd_setImage(with: nil)
+        }
         self.titleLabel.text = survey.title
         self.descriptionLabel.text = survey.description
         self.survey = survey
