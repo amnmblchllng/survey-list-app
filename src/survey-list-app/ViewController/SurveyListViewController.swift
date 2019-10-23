@@ -16,8 +16,9 @@ class SurveyListViewController: UIViewController, UICollectionViewDelegate, UICo
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var pageControl: UIPageControl!
     
-    let api = API()
-    var surveys: [Survey] = []
+    private let api = API()
+    private var surveys: [Survey] = []
+    private var refreshing = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,12 +47,11 @@ class SurveyListViewController: UIViewController, UICollectionViewDelegate, UICo
         pageControl.frame = CGRect(x: view.bounds.width - 20, y: 0, width: 20, height: view.bounds.height)
     }
     
-    @objc func refresh() {
+    @objc private func refresh() {
         refreshFromAPI()
     }
     
-    var refreshing = false
-    func refreshFromAPI(page: Int? = nil) {
+    private func refreshFromAPI(page: Int? = nil) {
         if page == nil {
             // first iteration
             if refreshing {
@@ -83,7 +83,7 @@ class SurveyListViewController: UIViewController, UICollectionViewDelegate, UICo
     }
     
     // show error message in alert box
-    func showError(_ message: String) {
+    private func showError(_ message: String) {
         let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         present(alert, animated: true)

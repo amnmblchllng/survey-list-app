@@ -15,9 +15,9 @@ class SurveyCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
     
-    var tappedTakeSurveyAction: ((Survey)->())?
-    var survey: Survey?
-    let gradient = CAGradientLayer()
+    private var tappedTakeSurveyAction: ((Survey)->())?
+    private var survey: Survey?
+    private let gradient = CAGradientLayer()
     
     @IBAction func tappedTakeSurvey(_ sender: Any) {
         guard let survey = survey else {
