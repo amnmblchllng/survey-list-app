@@ -12,9 +12,12 @@ import XCTest
 class APITests: XCTestCase {
     
     var api: API!
+    var surveyProvider: SurveyProvider!
+    
     override func setUp() {
         super.setUp()
         api = API()
+        surveyProvider = APISurveyProvider(api: api)
         continueAfterFailure = false
     }
     
@@ -29,7 +32,7 @@ class APITests: XCTestCase {
     
     func _testGetSurveys(page: Int? = nil, perPage: Int? = nil) -> XCTestExpectation {
         let ok = expectation(description: "got surveys")
-        api.getSurveys(page: page, perPage: perPage) { error, surveys in
+        surveyProvider.getSurveys(page: page, perPage: perPage) { error, surveys in
             XCTAssertNil(error, "error not nil")
             XCTAssertNotNil(surveys, "surveys are nil")
             ok.fulfill()

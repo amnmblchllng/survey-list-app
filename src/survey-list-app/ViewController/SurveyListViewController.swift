@@ -16,7 +16,7 @@ class SurveyListViewController: UIViewController, UICollectionViewDelegate, UICo
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var pageControl: UIPageControl!
     
-    private let api = API()
+    private let api = APISurveyProvider(api: API())
     private var surveys: [Survey] = []
     private var refreshing = false
     
