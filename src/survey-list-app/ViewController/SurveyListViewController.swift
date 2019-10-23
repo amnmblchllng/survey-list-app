@@ -25,7 +25,7 @@ class SurveyListViewController: UIViewController, UICollectionViewDelegate, UICo
         title = "SURVEYS"
         
         // styling
-        view.backgroundColor = UIColor(red:18*1.5/255.0, green:27*1.5/255.0, blue:50*1.5/255.0, alpha:1)
+        view.backgroundColor = UIColor(hexRgba: 0x1B284BFF)
         pageControl.transform = pageControl.transform.rotated(by: .pi/2)
         collectionView.backgroundColor = view.backgroundColor
         

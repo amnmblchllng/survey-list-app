@@ -17,6 +17,7 @@
 		54E6B805234EDFD800519723 /* APITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54E6B804234EDFD800519723 /* APITests.swift */; };
 		54F6E076235FCAB50031ED81 /* TakeSurveyButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54F6E075235FCAB50031ED81 /* TakeSurveyButton.swift */; };
 		54F6E078235FCABE0031ED81 /* SurveyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54F6E077235FCABE0031ED81 /* SurveyCollectionViewCell.swift */; };
+		54F6E07A235FD4710031ED81 /* UIColor+hexRgba.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54F6E079235FD4710031ED81 /* UIColor+hexRgba.swift */; };
 		81288A96D1D2D3938B6DE257 /* Pods_survey_list_appTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 05D627B9D570DA0B52435239 /* Pods_survey_list_appTests.framework */; };
 		F4D363869BF329BE4703DADF /* Pods_survey_list_app.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CD6F5CD9099F312B2A617BD /* Pods_survey_list_app.framework */; };
 /* End PBXBuildFile section */
@@ -50,6 +51,7 @@
 		54E6B804234EDFD800519723 /* APITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APITests.swift; sourceTree = "<group>"; };
 		54F6E075235FCAB50031ED81 /* TakeSurveyButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TakeSurveyButton.swift; sourceTree = "<group>"; };
 		54F6E077235FCABE0031ED81 /* SurveyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyCollectionViewCell.swift; sourceTree = "<group>"; };
+		54F6E079235FD4710031ED81 /* UIColor+hexRgba.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+hexRgba.swift"; sourceTree = "<group>"; };
 		94285DB7EE805B464BC40A8E /* Pods-survey-list-appTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-survey-list-appTests.debug.xcconfig"; path = "Target Support Files/Pods-survey-list-appTests/Pods-survey-list-appTests.debug.xcconfig"; sourceTree = "<group>"; };
 		AA64EBEC866DE1780933C825 /* Pods-survey-list-app.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-survey-list-app.debug.xcconfig"; path = "Target Support Files/Pods-survey-list-app/Pods-survey-list-app.debug.xcconfig"; sourceTree = "<group>"; };
 		F24E63DAC6E6917BB270B42C /* Pods-survey-list-appTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-survey-list-appTests.release.xcconfig"; path = "Target Support Files/Pods-survey-list-appTests/Pods-survey-list-appTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -133,6 +135,7 @@
 			children = (
 				54F6E077235FCABE0031ED81 /* SurveyCollectionViewCell.swift */,
 				54F6E075235FCAB50031ED81 /* TakeSurveyButton.swift */,
+				54F6E079235FD4710031ED81 /* UIColor+hexRgba.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -339,6 +342,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				54F6E07A235FD4710031ED81 /* UIColor+hexRgba.swift in Sources */,
 				54F6E078235FCABE0031ED81 /* SurveyCollectionViewCell.swift in Sources */,
 				54F6E076235FCAB50031ED81 /* TakeSurveyButton.swift in Sources */,
 				54C14F67234ED34D0051B7A8 /* SurveyListViewController.swift in Sources */,
