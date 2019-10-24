@@ -16,6 +16,7 @@
 		54E6B803234EDFB100519723 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54E6B802234EDFB100519723 /* API.swift */; };
 		54E6B805234EDFD800519723 /* APITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54E6B804234EDFD800519723 /* APITests.swift */; };
 		54F28A0923622068006E46F1 /* MockSurveyProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54F28A0823622068006E46F1 /* MockSurveyProvider.swift */; };
+		54F28A0B2362289F006E46F1 /* MockTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54F28A0A2362289F006E46F1 /* MockTests.swift */; };
 		54F6E076235FCAB50031ED81 /* TakeSurveyButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54F6E075235FCAB50031ED81 /* TakeSurveyButton.swift */; };
 		54F6E078235FCABE0031ED81 /* SurveyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54F6E077235FCABE0031ED81 /* SurveyCollectionViewCell.swift */; };
 		54F6E07A235FD4710031ED81 /* UIColor+hexRgba.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54F6E079235FD4710031ED81 /* UIColor+hexRgba.swift */; };
@@ -55,6 +56,7 @@
 		54E6B802234EDFB100519723 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		54E6B804234EDFD800519723 /* APITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APITests.swift; sourceTree = "<group>"; };
 		54F28A0823622068006E46F1 /* MockSurveyProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockSurveyProvider.swift; sourceTree = "<group>"; };
+		54F28A0A2362289F006E46F1 /* MockTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTests.swift; sourceTree = "<group>"; };
 		54F6E075235FCAB50031ED81 /* TakeSurveyButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TakeSurveyButton.swift; sourceTree = "<group>"; };
 		54F6E077235FCABE0031ED81 /* SurveyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyCollectionViewCell.swift; sourceTree = "<group>"; };
 		54F6E079235FD4710031ED81 /* UIColor+hexRgba.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+hexRgba.swift"; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 			children = (
 				54C14F7B234ED34D0051B7A8 /* Info.plist */,
 				54E6B804234EDFD800519723 /* APITests.swift */,
+				54F28A0A2362289F006E46F1 /* MockTests.swift */,
 			);
 			path = "survey-list-appTests";
 			sourceTree = "<group>";
@@ -377,6 +380,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				54E6B805234EDFD800519723 /* APITests.swift in Sources */,
+				54F28A0B2362289F006E46F1 /* MockTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
