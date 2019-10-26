@@ -1,6 +1,8 @@
 # Survey List App for iOS
 
-Technical Test Implementation
+Nimble Technical Test Implementation
+
+**Result: not accepted**
 
 ----
 
